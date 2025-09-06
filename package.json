@@ -1,12 +1,20 @@
 {
   "name": "codingbot",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A Telegram bot for coding assistance powered by AI",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "ts-node  src/index.ts"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
   },
-  "keywords": [],
+  "keywords": [
+    "telegram",
+    "bot",
+    "coding",
+    "ai",
+    "assistant"
+  ],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.10.0",
