@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@langchain/core':
         specifier: ^0.3.72
-        version: 0.3.72
+        version: 0.3.72(openai@5.12.2(ws@8.18.3)(zod@3.25.76))
       '@langchain/groq':
         specifier: ^0.2.3
-        version: 0.2.3(@langchain/core@0.3.72)
+        version: 0.2.3(@langchain/core@0.3.72(openai@5.12.2(ws@8.18.3)(zod@3.25.76)))
       dotenv:
         specifier: ^17.2.1
         version: 17.2.1
@@ -322,6 +322,18 @@ packages:
       encoding:
         optional: true
 
+  openai@5.12.2:
+    resolution: {integrity: sha512-xqzHHQch5Tws5PcKR2xsZGX9xtch+JQFz5zb14dGqlshmmDAFBFEWmeIpf7wVqWV+w7Emj7jRgkNJakyKE0tYQ==}
+    hasBin: true
+    peerDependencies:
+      ws: ^8.18.0
+      zod: ^3.23.8
+    peerDependenciesMeta:
+      ws:
+        optional: true
+      zod:
+        optional: true
+
   p-finally@1.0.0:
     resolution: {integrity: sha512-LICb2p9CB7FS+0eR1oqWnHhp0FljGLZCWBE9aix0Uye9W8LTQPwMTYVGWQWIw9RdQiDg4+epXQODwIYJtSJaow==}
     engines: {node: '>=4'}
@@ -415,6 +427,18 @@ packages:
   whatwg-url@5.0.0:
     resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
 
+  ws@8.18.3:
+    resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
   yn@3.1.1:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
@@ -444,14 +468,14 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@langchain/core@0.3.72':
+  '@langchain/core@0.3.72(openai@5.12.2(ws@8.18.3)(zod@3.25.76))':
     dependencies:
       '@cfworker/json-schema': 4.1.1
       ansi-styles: 5.2.0
       camelcase: 6.3.0
       decamelize: 1.2.0
       js-tiktoken: 1.0.21
-      langsmith: 0.3.66
+      langsmith: 0.3.66(openai@5.12.2(ws@8.18.3)(zod@3.25.76))
       mustache: 4.2.0
       p-queue: 6.6.2
       p-retry: 4.6.2
@@ -464,9 +488,9 @@ snapshots:
       - '@opentelemetry/sdk-trace-base'
       - openai
 
-  '@langchain/groq@0.2.3(@langchain/core@0.3.72)':
+  '@langchain/groq@0.2.3(@langchain/core@0.3.72(openai@5.12.2(ws@8.18.3)(zod@3.25.76)))':
     dependencies:
-      '@langchain/core': 0.3.72
+      '@langchain/core': 0.3.72(openai@5.12.2(ws@8.18.3)(zod@3.25.76))
       groq-sdk: 0.19.0
       zod: 3.25.76
     transitivePeerDependencies:
@@ -668,7 +692,7 @@ snapshots:
     dependencies:
       base64-js: 1.5.1
 
-  langsmith@0.3.66:
+  langsmith@0.3.66(openai@5.12.2(ws@8.18.3)(zod@3.25.76)):
     dependencies:
       '@types/uuid': 10.0.0
       chalk: 4.1.2
@@ -677,6 +701,8 @@ snapshots:
       p-retry: 4.6.2
       semver: 7.7.2
       uuid: 10.0.0
+    optionalDependencies:
+      openai: 5.12.2(ws@8.18.3)(zod@3.25.76)
 
   make-error@1.3.6: {}
 
@@ -699,6 +725,12 @@ snapshots:
   node-fetch@2.7.0:
     dependencies:
       whatwg-url: 5.0.0
+
+  openai@5.12.2(ws@8.18.3)(zod@3.25.76):
+    optionalDependencies:
+      ws: 8.18.3
+      zod: 3.25.76
+    optional: true
 
   p-finally@1.0.0: {}
 
@@ -786,6 +818,9 @@ snapshots:
     dependencies:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
+
+  ws@8.18.3:
+    optional: true
 
   yn@3.1.1: {}
 

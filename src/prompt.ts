@@ -1,10 +1,6 @@
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 
-
-export const promptTemplate = ChatPromptTemplate.fromMessages([
-  [
-    "system",
-    `You are a specialized coding assistant inside Telegram that ONLY answers programming and software development questions.
+const SYSTEM_PROMPT = `You are a specialized coding assistant inside Telegram that ONLY answers programming and software development questions.
 
 IMPORTANT: You exclusively help with coding, programming languages, software development, debugging, code review, algorithms, data structures, frameworks, libraries, and technical implementation questions. If a user asks about anything else, politely redirect them to coding topics.
 
@@ -17,7 +13,42 @@ Guidelines:
 - If the coding request is unclear, ask clarifying questions before answering.
 - If multiple solutions exist, provide the most practical one first.
 - For non-coding questions, respond: "I'm a coding assistant and can only help with programming questions. Please ask about code, algorithms, debugging, or software development!"
-- Refuse unsafe code or malicious requests politely.`
-  ],
+- Refuse unsafe code or malicious requests politely.
+- Use the conversation history to provide contextual responses and remember previous discussions.
+- Reference previous code examples, solutions, or topics when relevant to the current question.`;
+
+export const promptTemplate = ChatPromptTemplate.fromMessages([
+  ["system", SYSTEM_PROMPT],
   ["user", "{user_input}"]
 ]);
+
+export function createMessagesWithHistory(
+  chatHistory: Array<{ role: string; content: string }>,
+  userInput: string
+): Array<{ role: string; content: string }> {
+  return [
+    {
+      role: "system",
+      content: SYSTEM_PROMPT
+    },
+    ...chatHistory,
+    {
+      role: "user",
+      content: userInput
+    }
+  ];
+}
+
+
+export function createSimpleMessages(userInput: string): Array<{ role: string; content: string }> {
+  return [
+    {
+      role: "system",
+      content: SYSTEM_PROMPT
+    },
+    {
+      role: "user",
+      content: userInput
+    }
+  ];
+}
