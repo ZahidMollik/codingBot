@@ -22,33 +22,18 @@ export const promptTemplate = ChatPromptTemplate.fromMessages([
   ["user", "{user_input}"]
 ]);
 
-export function createMessagesWithHistory(
-  chatHistory: Array<{ role: string; content: string }>,
-  userInput: string
-): Array<{ role: string; content: string }> {
-  return [
-    {
-      role: "system",
-      content: SYSTEM_PROMPT
-    },
-    ...chatHistory,
-    {
-      role: "user",
-      content: userInput
-    }
-  ];
+
+export async function invokeWithTemplate(llm: any, userInput: string) {
+  const chain = promptTemplate.pipe(llm);
+  return await chain.invoke({ user_input: userInput });
 }
 
-
-export function createSimpleMessages(userInput: string): Array<{ role: string; content: string }> {
-  return [
-    {
-      role: "system",
-      content: SYSTEM_PROMPT
-    },
-    {
-      role: "user",
-      content: userInput
-    }
+export function createDynamicTemplate(chatHistory: Array<{ role: string; content: string }>) {
+  const messages: Array<[string, string]> = [
+    ["system", SYSTEM_PROMPT],
+    ...chatHistory.map(msg => [msg.role, msg.content] as [string, string]),
+    ["user", "{user_input}"]
   ];
+  
+  return ChatPromptTemplate.fromMessages(messages);
 }
