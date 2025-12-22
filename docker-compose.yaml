@@ -1,0 +1,11 @@
+services:
+  codingbot:
+    build:
+      context: .
+      dockerfile: multi-stage-dockerfile
+    container_name: nestjsapp
+    ports:
+      - "3000:3000"
+    environment:
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      BOT_TOKEN: ${BOT_TOKEN}
