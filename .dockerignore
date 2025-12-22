@@ -1,0 +1,48 @@
+# Node modules
+node_modules
+npm-debug.log
+pnpm-debug.log
+
+# Build output
+dist
+build
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+docs
+
+# Testing
+coverage
+.nyc_output
+
+# Temporary files
+*.log
+*.tmp
+.cache
+
+# Docker files (not needed in image)
+dockerfile
+multi-stage-dockerfile
+docker-compose.yaml
+.dockerignore

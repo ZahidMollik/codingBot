@@ -9,6 +9,8 @@ A Telegram bot that provides AI-powered coding assistance using Groq's LLaMA mod
 - Telegram Bot Token (from [@BotFather](https://t.me/botfather))
 - Groq API Key (from [Groq Console](https://console.groq.com/))
 
+- Docker and Docker Compose (for containerized)
+
 ## Installation
 
 1. **Clone the repository**
@@ -25,7 +27,7 @@ A Telegram bot that provides AI-powered coding assistance using Groq's LLaMA mod
 3. **Set up environment variables**
    Create a `.env` file in the root directory:
    ```env
-   TELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
+   BOT_TOKEN=your_telegram_bot_token_here
    GROQ_API_KEY=your_groq_api_key_here
    ```
 
@@ -41,6 +43,18 @@ pnpm run dev
 pnpm run build
 pnpm start
 ```
+
+### For Docker
+
+1. **Build and run with Docker Compose**
+   ```bash
+   docker-compose up -d
+   ```
+
+2. **Stop the bot**
+   ```bash
+   docker-compose down
+   ```
 
 ## Bot Commands
 
