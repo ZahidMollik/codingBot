@@ -29,15 +29,21 @@ export async function invokeWithTemplate(llm: any, userInput: string) {
 }
 
 export function createDynamicTemplate(chatHistory: Array<{ role: string; content: string }>) {
+  // Helper function to escape curly braces in content
+  const escapeContent = (content: string): string => {
+    return content.replace(/\{/g, '{{').replace(/\}/g, '}}');
+  };
+
   const messages: Array<[string, string]> = [
     ["system", SYSTEM_PROMPT],
     ...chatHistory.map(msg => {
       // Map 'assistant' to 'ai' for LangChain compatibility
       const role = msg.role === 'assistant' ? 'ai' : msg.role;
-      return [role, msg.content] as [string, string];
+      // Escape curly braces in message content to prevent template parsing errors
+      return [role, escapeContent(msg.content)] as [string, string];
     }),
     ["user", "{user_input}"]
   ];
-  
+
   return ChatPromptTemplate.fromMessages(messages);
 }
