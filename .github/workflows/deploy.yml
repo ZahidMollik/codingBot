@@ -83,8 +83,10 @@ jobs:
 
             sudo docker pull $IMAGE
 
-            sudo docker stop codingbot-app || true
-            sudo docker rm codingbot-app || true
+            if sudo docker ps -a --format '{{.Names}}' | grep -qx codingbot-app; then
+              sudo docker stop codingbot-app
+              sudo docker rm codingbot-app
+            fi
 
             sudo docker run -d \
               --restart always \
