@@ -69,18 +69,18 @@ jobs:
             IMAGE=${{ secrets.DOCKER_USERNAME }}/codingbot-app:${{ github.sha }}
             ENV_FILE_PATH=/opt/codingbot-app/.env
 
-            mkdir -p /opt/codingbot-app
-            cat << 'EOF' > "$ENV_FILE_PATH"
+            sudo mkdir -p /opt/codingbot-app
+            sudo tee "$ENV_FILE_PATH" > /dev/null << 'EOF'
             ${{ secrets.ENV_FILE }}
             EOF
-            chmod 600 "$ENV_FILE_PATH"
+            sudo chmod 600 "$ENV_FILE_PATH"
 
-            docker pull $IMAGE
+            sudo docker pull $IMAGE
 
-            docker stop codingbot-app || true
-            docker rm codingbot-app || true
+            sudo docker stop codingbot-app || true
+            sudo docker rm codingbot-app || true
 
-            docker run -d \
+            sudo docker run -d \
               --restart always \
               --name codingbot-app \
               -p 80:3000 \
