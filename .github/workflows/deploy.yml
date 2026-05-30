@@ -14,17 +14,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2️⃣ Setup Node.js
+      # 2️⃣ Setup pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      # 3️⃣ Setup Node.js
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
-
-      # 3️⃣ Setup pnpm
-      - name: Setup pnpm
-        run: corepack enable
 
       # 3️⃣ Install dependencies
       - name: Install dependencies
